@@ -1,0 +1,19 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = "Master.cshtml";
+}
+
+@* the fun starts here *@
+
+<div class="text-center">
+    @Umbraco.Field("title")
+</div>
+
+
+@if ( TempData["success"] == null) {
+    Html.RenderAction("RenderForm", "ContactFormSurface");
+} 
+else 
+{
+    <p>Your message was send!</p>
+}

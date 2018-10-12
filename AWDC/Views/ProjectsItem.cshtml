@@ -1,0 +1,23 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.ProjectsItem>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+
+@{
+	Layout = "Master.cshtml";
+}
+
+<div class="col-md-6 col-md-offset-3">
+   
+    <!--Umbraco cannot return an object-->
+    @{
+    var imageId = CurrentPage.GetPropertyValue<string>("projectImage");
+    var image = Umbraco.Media(imageId);
+    <img src="@image.Url" class="s_project_item" />
+    }
+     <h3 class="text-center">
+        @Umbraco.Field("projectTitle")
+    </h3>
+    <p class="text-center">
+        @Umbraco.Field("projectContent")
+    </p>
+</div>
+

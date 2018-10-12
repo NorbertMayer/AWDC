@@ -1,0 +1,27 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.ProjectsMain>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+<h1>List of all Projects</h1>
+
+ @{
+    var selection = Model.Content.Site().FirstChild("projectsMain").Children().Where(x => x.IsVisible());
+ }
+        
+        	@foreach(var item in selection) {
+        	<div class="col-md-6 card">
+        	 
+        	 @{
+        	    var mediaItem = Umbraco.TypedMedia(item.GetPropertyValue("projectImage").ToString());
+        	    <img class="card-img-top" src="@mediaItem.Url" style="width: 100%;"/>
+            }  
+              <div class="card-body">
+                <h3 class="card-title">@item.Name</h3>
+                <p class="card-text">@Umbraco.Truncate(item.GetPropertyValue("projectContent").ToString(), 150, false)</p>
+                <p>Status: <span class="badge">@item.GetPropertyValue("projectStatus")</span></p> <a href="@item.Url" class="btn btn-primary pull-right">Read more</a>
+              </div>
+            </div>
+            }
+        

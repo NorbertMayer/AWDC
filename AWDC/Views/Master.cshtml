@@ -1,0 +1,39 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Master>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        AWDC
+    </title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <script src="~/scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <!--Render menu-->
+                @Umbraco.RenderMacro("MainMenu")
+                
+                <!--Render breadcumbs-->
+                @Umbraco.RenderMacro("BreadcrumbsMenu")
+                
+            </div>
+            
+            <div class="maincontent">
+                @RenderBody()
+            </div>
+            
+                <div class="footer text-center">
+                    <p>This is the footer</p>
+                </div>
+            
+        </div>
+    </body>
+</html>

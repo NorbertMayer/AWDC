@@ -1,0 +1,21 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+
+@{
+    var numOfArticles = Model.MacroParameters["nrOfArticles"];
+	var selection = Model.Content.Site().FirstChild("ArticlesMain").Children()
+						.Where(x => x.IsVisible())
+						.OrderBy("Name")
+						.Take(Convert.ToInt32(numOfArticles));
+}
+
+	@foreach(var item in selection){
+	<div class="card col-md-4">
+      <div class="card-block">
+        <h4 class="card-title">@item.GetPropertyValue("articleTitle")</h4>
+        <p class="card-text">@Umbraco.Truncate(item.GetPropertyValue("articleContents").ToString(), 150, false)</p>
+        <a href="@item.Url" class="btn btn-primary">Read More</a>
+      </div>
+    </div>
+	}
+

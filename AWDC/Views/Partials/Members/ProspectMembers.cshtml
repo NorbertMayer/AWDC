@@ -1,0 +1,17 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@{
+var memberService =
+ApplicationContext.Current.Services.MemberService;
+
+var members = memberService.GetMembersByGroup("prospect");
+}
+
+@foreach (var member in members) 
+{
+<p>
+@(member.GetValue("firstname") + " "
++ member.GetValue("lastname")) <br/>
+Mobile: @member.GetValue("mobile")<br />
+</p>
+}

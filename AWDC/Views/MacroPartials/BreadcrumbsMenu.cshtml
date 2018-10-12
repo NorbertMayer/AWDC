@@ -1,0 +1,14 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+<ol class="breadcrumb">
+@{
+    var selection = CurrentPage.Ancestors();
+    if (selection.Any()) {
+        foreach (var page in selection.OrderBy("Level")) {
+           
+            <li><a href="@page.Url">@page.Name</a></li>
+        }
+        <li class="active">@CurrentPage.Name</li>
+    }
+}
+</ol>
